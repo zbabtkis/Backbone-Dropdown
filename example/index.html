@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width' />
+    
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+    
+    <link rel='stylesheet' type='text/css' href='./css/hemisu-dark.css' />
+    <link rel='stylesheet' type='text/css' href='../components/bootstrap/docs/assets/css/bootstrap.css' />
+    <link rel='stylesheet' type='text/css' href='../components/bootstrap/docs/assets/css/bootstrap-responsive.css' />
+    <link rel='stylesheet' type='text/css' href='../backbone.dropdown.css' />
+    
+    <style>
+        body {
+            background: #16a085;
+        }
+        #intro {
+            background: #2c3e50;
+            margin-top: 70px;
+            color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class='container'>
+        <div id='site-nav'>
+            <div class='navbar navbar-fixed-top'>
+                <div class='navbar-inner'>
+                    <div class='container'>
+                        <a class='btn btn-navbar' data-toggle='collapse' data-target='.nav-collapse'>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                        </a>
+                        <a class='brand'>Backbone Dropdown</a>
+                        <div class='nav-collapse collapse'>
+                            <ul class='nav'>
+                                <li><a href='#intro'>Intro</a></li>
+                                <li><a href='#basic-use'>Basic Use</a></li>
+                                <li><a href='#api'>API</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id='intro' class='hero-unit'>
+            <h1>Backbone Dropdown</h1>
+            A simple Backbone.js based dropdown widget for your web app!
+        </section>
+        <section id='basic-use' class='well'>
+            <h2>Basic Use</h2>
+            <section id='instantiate'>
+                <p>To create a dropdown box, instantiate, render and append the element to the DOM.</p>
+                <pre class='prettyprint'>
+var widget = new Dropdown();
+                
+widget.render().$el.appendTo('#basic-use .example');</pre>
+                <div class='example'>
+                </div>
+            </section>
+            
+            <section id='adding-models'>
+                <h3>Adding Models</h3>
+                <p>Of course, the above example isn't very useful == what are you supposed to do with a dropdown that doesn't have any options to select from? To add options, add new backbone models to the dropdown collection before rendering.</p>
+                <pre class='prettyprint'>
+widget.collection.add([
+    {label: 'Something', value: 'someval'},
+    {label: 'Something Else', value: 'someotherval'}
+]);
+
+widget.render();
+</pre>
+                <div class='example'></div>
+            </section>
+        </section>
+        
+        <section id='configure' class='well clearfix'>
+            <h2>Configure</h2>
+            <p>To set global configuration options for dropdown widgets in your app, use the configure method on the Dropdown object.</p>
+            <pre class='prettyprint'>
+Dropdown.configure({
+    theme: 'theme-green',  // Set default theme css class    : defaults to 'theme-green'.
+    animated: true         // Animate widgets (true | false) : defaults to true.
+});
+</pre>
+            <p>You can pass the same argument into the constructor to set configuration options individually.</p><pre class='prettyprint'>new Dropdown({theme: 'theme-yellow'})</pre>
+            
+            <div class='example'></div>
+            <strong>Theme options:</strong>
+            <ul>
+                <li>theme-yellow</li>
+                <li>theme-green</li>
+                <li>theme-red</li>
+                <li>theme-blue</li>
+            </ul>
+        </section>
+        
+        <section id='api' class='well clearfix'>
+            <h2>API</h2>
+            <p>Most of the Dropdown widgets inner workings are self explanatory and standard for Backbone. Lucky for you there are a couple convenience methods that will make your job easier!</p>
+            <section id='set-value'>
+                <h3>Set Value</h3>
+                <p>You can set the value programatically, and the widget's view will update automatically.</p>
+                <pre class='prettyprint'>
+&lt;select id='select-value'&gt;
+    &lt;option value='someval'&gt;Something&lt;/option&gt;
+    &lt;option value='someotherval'&gt;Something Else&lt;/option&gt;
+&lt;/select&gt;
+</pre>
+                <pre class='prettyprint'>
+$('#select-value').change(function() {
+    var val = $(this).val();
+    widget.value(val);
+});
+</pre>
+                <div class='example'></div>
+                <select id='select-value'>
+                    <option value='someval'>Something</option>
+                    <option value='someotherval'>Something Else</option>
+                </select>
+            </section>
+            
+            <section id='get-value clearfix'>
+                <h3>Get Value</h3>
+                <p>Use the value method without any arguments to get the current selected value.</p>
+                <pre class='prettyprint'>
+widget.value();
+</pre>
+            </section>
+        </section>
+    </div>
+    
+    <script src='../components/jquery/jquery.js'></script>
+    <script src='../components/underscore/underscore-min.js'></script>
+    <script src='../components/backbone/backbone-min.js'></script>
+    <script src='../components/bootstrap/docs/assets/js/bootstrap.js'></script>
+    
+    <script src='../backbone.dropdown.js'></script>
+    
+    <script>
+        $(function() {
+            Dropdown.configure({
+                animated: true,
+                theme: 'theme-green'
+            });
+            
+            var basic = new Dropdown()
+                .render()
+                .$el
+                .appendTo('#instantiate .example');
+            
+            var collection = new Dropdown();
+            
+            collection.collection.add([
+                    {label: 'Something', value: 'someval'},
+                    {label: 'Something Else', value: 'someotherval'}
+                ]);
+            collection.render()
+                .$el
+                .appendTo('#adding-models .example');
+            
+            var theme = new Dropdown({theme: 'theme-yellow'});
+            theme.collection.add({});
+            theme.render()
+                .$el
+                .appendTo('#configure .example');
+            
+            
+            var setter = new Dropdown();
+            setter.collection.add([
+                    {label: 'Something', value: 'someval'},
+                    {label: 'Something Else', value: 'someotherval'}
+                ]);
+            setter.render()
+                .$el
+                .appendTo('#set-value .example');
+            
+            $('#select-value').change(function() {
+                var val = $(this).val();
+                setter.value(val);
+            });
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+
+.dropdown {
+    padding: 10px 5px;
+}
+.current {
+    border-width: 0 0 0 5px;
+    border-style: solid;
+    padding: 5px 5px 10px;
+    min-width: 150px;
+    width: 150px;
+    height: 1em;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 150px;
+    width: 200px;
+    position: absolute;
+    top: 1em;
+    margin-top: 25px;
+    overflow: hidden;
+}
+.dropdown li {
+    padding: 2px 2px 2px 5px;
+    cursor: pointer;
+}
+.dropdown li:last-child {
+    border-bottom: none !important;
+}
+
+.dropdown.no-animation ul {
+    display: none;
+}
+.dropdown.no-animation ul.active {
+    display: block;
+}
+
+/**
+ * Animations
+ */
+
+.dropdown.animated ul {
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    opacity: 0;
+}
+
+.dropdown.animated li {
+    height: 0;
+    line-height: 0;
+    -webkit-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+.dropdown.animated ul.active li {
+    height: 1.5em;
+    line-height: 1.5em;
+}
+.dropdown.animated ul.active {
+    opacity: 1;
+}
+
+.dropdown.animated .current .item {
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    -webkit-animation: pullIn 0.3s;
+}
+
+@-webkit-keyframes pullIn {
+    from {
+        top: 20px;
+    }
+    to {
+        top: 5px;
+    }
+}
+
+/**
+ * Themes
+ */
+
+/** Theme Green */
+.dropdown.theme-green .current {
+    background: #fff;
+    color: #2c3e50;
+    border-color: #2ecc71;
+    box-shadow: 0 0 1px 1px #ecf0f1 inset;
+}
+.dropdown.theme-green ul {
+    border: 1px solid #2c3e50;
+    background: #34495e;
+    color: #ecf0f1;
+}
+.dropdown.theme-green li {
+    border-bottom: 1px solid #2c3e50;
+}
+
+.dropdown.theme-green li:hover {
+    background: #2ecc71;
+}
+
+/** Theme Yellow */
+
+.dropdown.theme-yellow .current {
+    background: #2c3e50;
+    color: #ecf0f1;
+    border-color: #f1c40f;
+    box-shadow: 0 0 1px 1px #7f8c8d inset;
+}
+.dropdown.theme-yellow ul {
+    border: 1px solid #2c3e50;
+    background: #34495e;
+    color: #ecf0f1;
+}
+.dropdown.theme-yellow li {
+    border-bottom: 1px solid #2c3e50;
+}
+
+.dropdown.theme-yellow li:hover {
+    background: #f1c40f;
+    color: #2c3e50;
+}
+
+/** Theme Red */
+
+.dropdown.theme-red .current {
+    background: #ecf0f1;
+    color: #34495e;
+    border-color: #e74c3c;
+    box-shadow: 0 0 1px 1px #7f8c8d inset;
+}
+.dropdown.theme-red ul {
+    border: 1px solid #95a5a6;
+    background: #ecf0f1;
+    color: #7f8c8d;
+}
+.dropdown.theme-red li {
+    border-bottom: 1px solid #bdc3c7;
+}
+
+.dropdown.theme-red li:hover {
+    background: #e74c3c;
+    color: #ecf0f1;
+}
+
+/** Theme Blue */
+
+.dropdown.theme-blue .current {
+    background: #ecf0f1;
+    color: #34495e;
+    border-color: #2980b9;
+    box-shadow: 0 0 1px 1px #7f8c8d inset;
+}
+.dropdown.theme-blue ul {
+    border: 1px solid #95a5a6;
+    background: #ecf0f1;
+    color: #7f8c8d;
+}
+.dropdown.theme-blue li {
+    border-bottom: 1px solid #bdc3c7;
+}
+
+.dropdown.theme-blue li:hover {
+    background: #3498db;
+    color: #ecf0f1;
+}
