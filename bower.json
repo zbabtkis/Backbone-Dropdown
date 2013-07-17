@@ -1,5 +1,5 @@
 {
-  "name": "Backbone Dropdown",
+  "name": "Backbone-Dropdown",
   "version": "1.0.1",
   "main": "bakbone.dropdown.js",
   "ignore": [
