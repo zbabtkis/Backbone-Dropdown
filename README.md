@@ -51,7 +51,7 @@ Most of the Dropdown widgets inner workings are self explanatory and standard fo
 ###Set Value
 You can set the value programatically, and the widget's view will update automatically.
 
-``html
+```html
 <select id='select-value'>
     <option value='someval'>Something</option>
     <option value='someotherval'>Something Else</option>
